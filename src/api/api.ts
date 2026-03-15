@@ -19,8 +19,11 @@ export interface DummyJSONResponse {
 
 const BASE_URL = 'https://dummyjson.com';
 
-export async function getPosts(): Promise<DummyJSONResponse> {
-  const res = await fetch(`${BASE_URL}/posts`, {
+export async function getPosts(
+  limit: number = 10,
+  skip: number = 0
+): Promise<DummyJSONResponse> {
+  const res = await fetch(`${BASE_URL}/posts?limit=${limit}&skip=${skip}`, {
     cache: 'no-store',
   });
 

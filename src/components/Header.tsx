@@ -9,7 +9,7 @@ const NAV_LINKS = [
 
 export default function Header() {
   return (
-    <header className="border-b bg-white p-4">
+    <header className="sticky top-0 z-10 border-b bg-white p-4">
       <div className="max-w-5xl mx-auto flex justify-between items-center">
         <Link href="/" className="text-2xl font-bold">
           BloggerFeed
