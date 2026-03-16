@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { Input } from './ui/input';
+import { Input } from '@/components/ui/input';
 import { useDebouncedCallback } from 'use-debounce';
 import { Search } from 'lucide-react';
 import {
@@ -10,7 +10,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from './ui/select';
+} from '@/components/ui/select';
 
 interface PostsFiltersProps {
   tags: string[];
