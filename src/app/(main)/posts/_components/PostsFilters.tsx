@@ -56,7 +56,7 @@ export function PostsFilters({ tags }: PostsFiltersProps) {
         value={searchParams.get('tag') || 'all'}
         onValueChange={(val) => updateQueryParams('tag', val)}
       >
-        <SelectTrigger className="w-full md:w-50">
+        <SelectTrigger className="w-full md:w-50" aria-label="Фильтр по тегам">
           <SelectValue placeholder="Выберите тег" />
         </SelectTrigger>
         <SelectContent>
@@ -73,7 +73,10 @@ export function PostsFilters({ tags }: PostsFiltersProps) {
         value={searchParams.get('sortBy') || 'default'}
         onValueChange={(val) => updateQueryParams('sortBy', val)}
       >
-        <SelectTrigger className="w-full md:w-50">
+        <SelectTrigger
+          className="w-full md:w-50"
+          aria-label="Сортировка постов"
+        >
           <SelectValue placeholder="Сортировка" />
         </SelectTrigger>
         <SelectContent>

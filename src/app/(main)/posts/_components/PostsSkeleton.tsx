@@ -10,7 +10,7 @@ export function PostsSkeleton() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
       {Array.from({ length: 6 }).map((_, i) => (
-        <Card key={i} className="flex flex-col h-62.5">
+        <Card key={i} className="flex flex-col h-70">
           <CardHeader>
             <Skeleton className="h-6 w-3/4 mb-2" />
             <Skeleton className="h-6 w-1/2" />

@@ -54,10 +54,9 @@ export async function PostsList({ searchParams }: PostsListProps) {
 
   return (
     <>
-      {/* СЕТКА ПОСТОВ */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
         {data.posts.map((post) => (
-          <Card key={post.id} className="flex flex-col">
+          <Card key={post.id} className="flex flex-col h-full min-h-70">
             <CardHeader>
               <CardTitle className="text-xl line-clamp-2">
                 {post.title}
