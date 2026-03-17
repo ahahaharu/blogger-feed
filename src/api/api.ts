@@ -82,3 +82,44 @@ export async function getPosts({
 
   return res.json();
 }
+
+export async function getPostById(id: string): Promise<Post> {
+  const res = await fetch(`https://dummyjson.com/posts/${id}`);
+
+  if (!res.ok) {
+    throw new Error('Пост не найден');
+  }
+
+  return res.json();
+}
+
+export interface Comment {
+  id: number;
+  body: string;
+  postId: number;
+  likes: number;
+  user: {
+    id: number;
+    username: string;
+    fullName: string;
+  };
+}
+
+export interface CommentsResponse {
+  comments: Comment[];
+  total: number;
+  skip: number;
+  limit: number;
+}
+
+export async function getPostComments(
+  postId: string
+): Promise<CommentsResponse> {
+  const res = await fetch(`https://dummyjson.com/posts/${postId}/comments`);
+
+  if (!res.ok) {
+    throw new Error('Не удалось загрузить комментарии');
+  }
+
+  return res.json();
+}
