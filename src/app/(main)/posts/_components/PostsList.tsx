@@ -46,8 +46,11 @@ export async function PostsList({ searchParams }: PostsListProps) {
 
   if (data.posts.length === 0) {
     return (
-      <div className="text-center py-20 text-gray-500">
-        Постов не найдено. Попробуйте изменить параметры поиска.
+      <div className="flex flex-col items-center justify-center min-h-[60vh] text-center text-gray-500mb-10">
+        <p className="text-lg font-medium text-gray-900 mb-2">
+          Постов не найдено
+        </p>
+        <p>Попробуйте изменить параметры поиска или выбрать другой тег.</p>
       </div>
     );
   }
@@ -98,6 +101,8 @@ export async function PostsList({ searchParams }: PostsListProps) {
             <PaginationItem>
               <PaginationPrevious
                 href={currentPage > 1 ? createPageURL(currentPage - 1) : '#'}
+                aria-disabled={currentPage === 1}
+                tabIndex={currentPage === 1 ? -1 : undefined}
                 className={
                   currentPage === 1 ? 'pointer-events-none opacity-50' : ''
                 }
@@ -126,6 +131,8 @@ export async function PostsList({ searchParams }: PostsListProps) {
                     ? createPageURL(currentPage + 1)
                     : '#'
                 }
+                aria-disabled={currentPage === totalPages}
+                tabIndex={currentPage === totalPages ? -1 : undefined}
                 className={
                   currentPage === totalPages
                     ? 'pointer-events-none opacity-50'
