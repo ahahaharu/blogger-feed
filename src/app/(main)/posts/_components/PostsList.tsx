@@ -19,6 +19,7 @@ import {
   PaginationPrevious,
 } from '@/components/ui/pagination';
 import { generatePagination } from '@/lib/utils';
+import BookmarkButton from '@/components/BookmarkButton';
 
 interface PostsListProps {
   searchParams: { [key: string]: string | undefined };
@@ -83,6 +84,7 @@ export async function PostsList({ searchParams }: PostsListProps) {
                 <span className="flex items-center gap-1.5">
                   <ThumbsUp className="w-4 h-4" /> {post.reactions.likes}
                 </span>
+                <BookmarkButton post={post} />
               </div>
               <Link
                 href={`/posts/${post.id}`}
