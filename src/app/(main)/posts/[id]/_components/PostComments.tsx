@@ -14,10 +14,10 @@ export default async function PostComments({ postId }: { postId: string }) {
 
   return (
     <div className="mt-12 pt-8 border-t">
-      <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
+      <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
         <MessageSquare className="w-6 h-6" />
         Комментарии ({data.total})
-      </h3>
+      </h2>
 
       <div className="space-y-6">
         {data.comments.map((comment) => (
