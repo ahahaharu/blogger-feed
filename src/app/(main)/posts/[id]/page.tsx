@@ -6,6 +6,7 @@ import Link from 'next/link';
 import PostComments from './_components/PostComments';
 import { Suspense } from 'react';
 import CommentsSkeleton from './_components/CommentsSkeleton';
+import { notFound } from 'next/navigation';
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -15,6 +16,10 @@ export default async function PostDetailsPage({ params }: Props) {
   const resolvedParams = await params;
 
   const post = await getPostById(resolvedParams.id);
+
+  if (!post) {
+    notFound();
+  }
 
   return (
     <main className="py-10 max-w-3xl mx-auto">

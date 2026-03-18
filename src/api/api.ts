@@ -83,10 +83,14 @@ export async function getPosts({
   return res.json();
 }
 
-export async function getPostById(id: string): Promise<Post> {
+export async function getPostById(id: string): Promise<Post | null> {
   const res = await fetch(`https://dummyjson.com/posts/${id}`, {
     next: { revalidate: 3600 },
   });
+
+  if (res.status === 404) {
+    return null;
+  }
 
   if (!res.ok) {
     throw new Error('Пост не найден');
