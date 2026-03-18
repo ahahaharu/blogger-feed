@@ -84,7 +84,9 @@ export async function getPosts({
 }
 
 export async function getPostById(id: string): Promise<Post> {
-  const res = await fetch(`https://dummyjson.com/posts/${id}`);
+  const res = await fetch(`https://dummyjson.com/posts/${id}`, {
+    next: { revalidate: 3600 },
+  });
 
   if (!res.ok) {
     throw new Error('Пост не найден');
@@ -115,7 +117,9 @@ export interface CommentsResponse {
 export async function getPostComments(
   postId: string
 ): Promise<CommentsResponse> {
-  const res = await fetch(`https://dummyjson.com/posts/${postId}/comments`);
+  const res = await fetch(`https://dummyjson.com/posts/${postId}/comments`, {
+    next: { revalidate: 60 },
+  });
 
   if (!res.ok) {
     throw new Error('Не удалось загрузить комментарии');

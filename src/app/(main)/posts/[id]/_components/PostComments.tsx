@@ -4,8 +4,6 @@ import { MessageSquare, ThumbsUp } from 'lucide-react';
 export default async function PostComments({ postId }: { postId: string }) {
   const data = await getPostComments(postId);
 
-  console.log(data);
-
   if (!data.comments || data.comments.length === 0) {
     return (
       <div className="mt-12 pt-8 border=t text-gray-500">

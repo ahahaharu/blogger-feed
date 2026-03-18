@@ -4,6 +4,8 @@ import { Button } from '@/components/ui/button';
 import { ArrowLeft, Eye, ThumbsUp } from 'lucide-react';
 import Link from 'next/link';
 import PostComments from './_components/PostComments';
+import { Suspense } from 'react';
+import CommentsSkeleton from './_components/CommentsSkeleton';
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -52,7 +54,9 @@ export default async function PostDetailsPage({ params }: Props) {
           <p className="whitespace-pre-wrap">{post.body}</p>
         </div>
       </article>
-      <PostComments postId={resolvedParams.id} />
+      <Suspense fallback={<CommentsSkeleton />}>
+        <PostComments postId={resolvedParams.id} />
+      </Suspense>
     </main>
   );
 }
