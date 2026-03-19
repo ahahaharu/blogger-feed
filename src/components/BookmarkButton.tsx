@@ -13,9 +13,13 @@ import { cn } from '@/lib/utils';
 
 interface BookmarkButtonProps {
   post: Post;
+  className?: string;
 }
 
-export default function BookmarkButton({ post }: BookmarkButtonProps) {
+export default function BookmarkButton({
+  post,
+  className,
+}: BookmarkButtonProps) {
   const bookmarked = useIsBookmarked(post.id);
   const addBookmark = useAddBookmark();
   const removeBookmark = useRemoveBookmark();
@@ -24,7 +28,7 @@ export default function BookmarkButton({ post }: BookmarkButtonProps) {
   if (!_hasHydrated) {
     return (
       <Button variant="ghost" size="icon" disabled className="text-gray-300">
-        <Bookmark className="w-5 h-5" />
+        <Bookmark className={cn('size-4 text-gray-300', className)} />
       </Button>
     );
   }
@@ -50,7 +54,7 @@ export default function BookmarkButton({ post }: BookmarkButtonProps) {
       )}
     >
       <Bookmark
-        className="w-5 h-5"
+        className={cn('size-4', className)}
         fill={bookmarked ? 'currentColor' : 'none'}
       />
     </Button>

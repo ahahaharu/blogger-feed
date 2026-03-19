@@ -7,6 +7,7 @@ import PostComments from './_components/PostComments';
 import { Suspense } from 'react';
 import CommentsSkeleton from './_components/CommentsSkeleton';
 import { notFound } from 'next/navigation';
+import BookmarkButton from '@/components/BookmarkButton';
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -48,10 +49,14 @@ export default async function PostDetailsPage({ params }: Props) {
 
         <div className="flex items-center gap-6 text-gray-500 mb-10 pb-6 border-b">
           <span className="flex items-center gap-2">
-            <Eye className="w-5 h-5" /> {post.views} просмотров
+            <Eye className="size-5" /> {post.views} просмотров
           </span>
           <span className="flex items-center gap-2">
-            <ThumbsUp className="w-5 h-5" /> {post.reactions.likes} лайков
+            <ThumbsUp className="size-5" /> {post.reactions.likes} лайков
+          </span>
+          <span className="flex items-center gap-2">
+            <BookmarkButton post={post} className="size-5" /> Добавить в
+            закладки
           </span>
         </div>
 
