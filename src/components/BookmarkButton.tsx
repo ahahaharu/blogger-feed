@@ -49,7 +49,7 @@ export default function BookmarkButton({
       size="icon"
       onClick={toggleBookmark}
       className={cn(
-        'transition-all duration-200 hover:bg-gray-100',
+        'transition-all duration-200 hover:bg-gray-100 cursor-pointer',
         bookmarked ? 'text-gray-900' : 'text-gray-500 hover:text-gray-900'
       )}
     >
