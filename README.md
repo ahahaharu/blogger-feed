@@ -2,7 +2,7 @@
 
 A modern full-stack web application for reading and bookmarking blog posts. Built with the latest Next.js App Router features, it demonstrates server-side authentication, client-side state persistence, and a highly responsive UI.
 
-[View WebSite]() 
+[View WebSite](https://blogger-feed-e25qmfoj8-ahahaharus-projects.vercel.app/) 
 
 * **Authentication:** Secure login flow using Auth.js (NextAuth v5) and DummyJSON API. Includes stateless sessions and edge-middleware route protection.
 * **Posts Feed:** Fast and responsive feed of blog posts fetched from an external API using React Server Components.
