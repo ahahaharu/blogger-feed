@@ -9,16 +9,12 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import {
-  Field,
-  FieldDescription,
-  FieldGroup,
-  FieldLabel,
-} from '@/components/ui/field';
+import { Field, FieldGroup, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { useActionState } from 'react';
 import { authenticate } from '@/lib/actions';
-import { AlertCircle, Loader2 } from 'lucide-react';
+import { AlertCircle, ArrowLeft, Loader2 } from 'lucide-react';
+import Link from 'next/link';
 
 export function LoginForm({
   className,
@@ -31,6 +27,16 @@ export function LoginForm({
 
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
+      <Button
+        variant="ghost"
+        asChild
+        className="self-start text-muted-foreground hover:text-primary"
+      >
+        <Link href="/">
+          <ArrowLeft className="mr-2 size-4" />
+          На главную
+        </Link>
+      </Button>
       <Card>
         <CardHeader>
           <CardTitle>Вход в аккаунт</CardTitle>
