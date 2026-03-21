@@ -1,18 +1,9 @@
-'use client';
-
 import Link from 'next/link';
 import { Button } from './ui/button';
-import { usePathname } from 'next/navigation';
-import { cn } from '@/lib/utils';
+import NavLinks from './NavLinks';
+import { logout } from '@/lib/actions';
 
-const NAV_LINKS = [
-  { href: '/posts', label: 'Лента' },
-  { href: '/bookmarks', label: 'Закладки' },
-];
-
-export default function Header() {
-  const pathname = usePathname();
-
+export default async function Header() {
   return (
     <header className="sticky top-0 z-10 border-b bg-white p-4">
       <div className="max-w-5xl mx-auto flex items-center justify-between">
@@ -20,30 +11,14 @@ export default function Header() {
           <Link href="/" className="text-2xl font-bold">
             BloggerFeed
           </Link>
-
-          <nav className="flex gap-6">
-            {NAV_LINKS.map((link) => {
-              const isActive = pathname.startsWith(link.href);
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={cn(
-                    isActive
-                      ? 'text-black font-semibold'
-                      : 'text-gray-600 hover:text-black'
-                  )}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
-          </nav>
+          <NavLinks />
         </div>
 
-        <div>
-          <Button variant="outline">Выйти</Button>
-        </div>
+        <form action={logout}>
+          <Button variant="outline" type="submit">
+            Выйти
+          </Button>
+        </form>
       </div>
     </header>
   );
