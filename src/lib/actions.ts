@@ -11,6 +11,12 @@ export async function authenticate(
     await signIn('credentials', formData);
   } catch (error) {
     if (error instanceof AuthError) {
+      const customMessage = error.cause?.err?.message;
+
+      if (customMessage) {
+        return customMessage;
+      }
+
       switch (error.type) {
         case 'CredentialsSignin':
           return 'Неверное имя пользователя или пароль.';

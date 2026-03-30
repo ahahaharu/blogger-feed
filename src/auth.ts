@@ -15,41 +15,45 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
           })
           .safeParse(credentials);
 
-        if (parsedCredentials.success) {
-          const { username, password } = parsedCredentials.data;
-
-          try {
-            const res = await fetch('https://dummyjson.com/auth/login', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                username,
-                password,
-                expiresInMins: 60,
-              }),
-            });
-
-            const user = await res.json();
-
-            if (!res.ok) {
-              console.log('Ошибка от API DummyJSON', user.message);
-              return null;
-            }
-
-            return {
-              id: user.id.toString(),
-              name: `${user.firstName} ${user.lastName}`,
-              email: user.email,
-              image: user.image,
-            };
-          } catch (error) {
-            console.error('Ошибка сети при запросе к DummyJSON', error);
-            return null;
-          }
+        if (!parsedCredentials.success) {
+          throw new Error('Невалидные данные формы авторизации');
         }
 
-        console.log('Невалидные данные формы авторизации');
-        return null;
+        const { username, password } = parsedCredentials.data;
+
+        try {
+          const res = await fetch('https://dummyjson.com/auth/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              username,
+              password,
+              expiresInMins: 60,
+            }),
+          });
+
+          const user = await res.json();
+
+          if (!res.ok) {
+            throw new Error(
+              user.message || 'Ошибка авторизации. Проверьте данные.'
+            );
+          }
+
+          return {
+            id: user.id.toString(),
+            name: `${user.firstName} ${user.lastName}`,
+            email: user.email,
+            image: user.image,
+          };
+        } catch (error) {
+          if (error instanceof Error && error.message !== 'fetch failed') {
+            throw error;
+          }
+          throw new Error(
+            'Ошибка сети при запросе к серверу. Попробуйте позже.'
+          );
+        }
       },
     }),
   ],
