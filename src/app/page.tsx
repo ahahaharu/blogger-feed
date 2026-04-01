@@ -12,7 +12,7 @@ export default function WelcomePage() {
       </p>
 
       <Button size="lg" className="text-lg px-8 py-6">
-        <Link href="/posts">Войти в аккаунт</Link>
+        <Link href="/login">Войти в аккаунт</Link>
       </Button>
     </main>
   );
